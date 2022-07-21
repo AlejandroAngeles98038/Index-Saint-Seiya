@@ -1,2 +1,2 @@
-const URL = 'https://rickandmortyapi.com/api'
-const IMG_PREFIX = 'https://rickandmortyapi.com/api/character/avatar'
+const URL = 'https://saint-seiya-api.herokuapp.com/api'
+const IMG_PREFIX = 'https://diegochagas.com/saint-seiya-api/'

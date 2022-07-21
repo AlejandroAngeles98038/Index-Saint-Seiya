@@ -1,41 +1,31 @@
-const characterContainer =  document.querySelector("#characterContainer");
-
-
-fetch(`${URL}/character`)
+fetch(`${URL}/characters`)
   .then(response => response.json())
   .then(data => renderCharacters(data))
 
 
-const renderCharacters = (characterNames) => {
-    console.log(characterNames.results)
 
-    let nameCharacter = characterNames.results;
+const renderCharacters = (characters) => {
+    document.querySelector('#result').innerHTML="";
 
-    nameCharacter.forEach((results) => {
-        const card = document.createElement('div');
-        card.classList.add("col-3", "row-4" );
+    characters.forEach((character) => {
+        
+        let characterId = character.id; 
+        if (characterId <= 24){
+            let div = document.createElement('div')
+            div.classList.add('col-3', 'mb-4', "text-center",)
+            div.innerHTML += `   <div class="col-3">
+                            <div class="card" style="width: 18rem; height: 18rem" data-id="${character.id}">
+                                <img src="${IMG_PREFIX}${character.image}" class="card-img-top border-bottom" style="object-fit:cover;">
+                            <div class="card-body">
+                                <h5 class="card-title mt-3"><b>${character.name}</b></h5>
+                            </div>
+                            </div> 
+                        </div>`
+            document.querySelector('#result').append(div)            
+        } 
 
-        const imgContainer = document.createElement('div')
-        imgContainer.classList.add('img-container')
-
-        const img = document.createElement('img')
-        img.classList.add('rounded')
-        img.src = results.image;
-
-        imgContainer.appendChild(img);
-
-        const numberId = document.createElement('p');
-        numberId.classList.add()
-        numberId.style.fontFamily = "helvetica"
-        numberId.style.fontsize = "10px"
-        numberId.textContent = `#${results.id} ${results.name}`
+    });
 
     
-        card.appendChild(imgContainer);
-        card.appendChild(numberId);
-        
-
-        characterContainer.appendChild(card);
-    })
-
+    
 }
