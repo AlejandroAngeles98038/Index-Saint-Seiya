@@ -9,11 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="./css/style.css">
-<style>
-    .image img{
-        object-fit: cover;
-    }
-</style>
+
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </head>
@@ -28,37 +24,43 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Mangas</a>
-                  </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Characters
+                      Warriors
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">All</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li id="anunnakisOption"><a class="dropdown-item" href="#">Anunnakis</a></li>
+                      <li id="berserkersOption"><a class="dropdown-item" href="#">Berserkers </a></li>
+                      <li id="coronaSaintsOption"><a class="dropdown-item" href="#">Corona Saints </a></li>
+                      <li id="cyclopsOption"><a class="dropdown-item" href="#">Cyclops</a></li>
+                      <li id="saintsOption"><a class="dropdown-item" href="#">Saints </a></li>
+                      <li id="spectersOption"><a class="dropdown-item" href="#">Specters</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <li id="allOption"><a class="dropdown-item" href="#">All</a></li>
                     </ul>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link ">Curiosities</a>
+                  <li class="nav-item" id="curiosities">
+                    <a class="nav-link" type="button">Curiosities</a>
                   </li>
+                  
                 </ul>
                 <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <input class="form-control me-2" autocomplete="off" type="search" placeholder="" aria-label="Search" id="search">
                   <button class="btn btn-warning" type="submit"><i class="bi bi-search"></i></button>
                 </form>
               </div>
             </div>
           </nav>
+          <div id="content" class="row">
           <div id="result" class="row">
           </div>
+
+        </div>
     </div>
 </section>
 <script src="./js/main.js"></script>
 <script src="./js/character.js"></script>
+<!-- <script src="./js/class.js"></script> -->
 
 </body>
 </html>
