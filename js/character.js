@@ -119,13 +119,15 @@ const renderCharacters = (characters) => {
             let div = document.createElement('div')
             div.classList.add('col-3', 'mb-4', "text-center",)
             div.innerHTML += `   <div class="col-3">
-                            <div class="card" style="width: 18rem; height: 18rem" data-id="${character.id}">
-                                <img src="${IMG_PREFIX}${character.image}" class="card-img-top border-bottom" style="object-fit:cover;">
-                            <div class="card-body">
-                                <h5 class="card-title mt-3"><b>${character.name}</b></h5>
-                            </div>
-                            </div> 
-                        </div>`
+            <div class="card" style="width: 18rem; height: 19rem;" data-id="${character.id}">
+              <figure class="rounded mx-auto d-block ">
+              <img src="${IMG_PREFIX}${character.image}" class="img-fluid" style ="height: 14rem;">
+              </figure>
+              <div class="card-body">
+                <h5 class="card-title mt-3"><b>${character.name}</b></h5>
+              </div>
+            </div>
+          </div>`
 
 
             document.querySelector('#result').append(div) 
