@@ -1,11 +1,9 @@
 const curiosities = document.querySelector('#curiosities');
-const spinner = document.querySelector('#spinner')
 const content = document.querySelector('#content')
-const previous = document.querySelector('#previous')
-const next = document.querySelector('#next')
+
 let results = [];
 
-fetch(`${URL}/all-classes`)
+fetch(`${URL}/all-classes/?limit=10`)
   .then(response => response.json())
   .then(data =>{ 
     results = data;
@@ -104,12 +102,61 @@ const renderAll = () => {
     renderCharacters(results);
 }
 
-// const sortByNameAZ = () => {
-//     results.sort(function(a,b) {
-//         return a.name > b.name ? 1 : -1;
-//     })
-// }
 
+//////////////////Función para pintar clasificación de la sección de shows///////////
+const shows = document.querySelector('#shows');
+const renderShows = (shows) => {
+    document.querySelector('#content').innerHTML=""
+  
+  
+    shows.forEach((show) => {
+        let block = document.createElement("div");
+        block.classList.add('col-3', 'mb-4', "text-center");
+
+      
+      block.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="card" style="width: 18rem; height: 24rem">
+            <div class="card-body">
+              <h5 class="card-subtitle">${show.midia}: ${show.name}</h4>
+              <h4 class="card-title">${show.release}</h5>
+            </div>
+            <figure class="image rounded mx-auto d-block ">
+                <img src="${IMG_PREFIX}${show.image}" class=" img-thumbnail" style ="height: 16rem;">
+            </figure>
+        </div>
+      `
+      );
+      block.dataset.name = show.name;
+      block.dataset.release = show.release;
+      block.dataset.description = show.description;
+      block.dataset.midia = show.midia;
+
+      block.addEventListener("click", function(evt){
+        document.querySelector('#exampleModal')
+        block.setAttribute('data-bs-toggle', 'modal')
+        block.setAttribute("data-bs-target", '#exampleModal2')
+        document.querySelector('#modalNameShows').innerHTML= evt.currentTarget.dataset.midia+ ": " + evt.currentTarget.dataset.name + "<br>" + "Release"+ ": " + evt.currentTarget.dataset.release;
+        document.querySelector('#modalImage2').innerHTML = `<img src="${IMG_PREFIX}${show.image}" class="rounded mx-auto d-block">`;
+        document.querySelector('#modalDescription').innerHTML= "Sinopsis:  "  + "<br>" + evt.currentTarget.dataset.description;
+        
+
+      })
+
+      document.querySelector('#content').append(block);
+    });
+  };
+
+  shows.addEventListener("click", (event) => {
+    event.preventDefault();
+  
+    const { name } = event.target;
+  
+    fetch(`${URL}/debuts`)
+      .then((response) => response.json())
+      .then((data) => renderShows(data));
+  });
 
 //////////// Función para pintar las clasificaciones de curiosidades////////////////
 
@@ -162,7 +209,7 @@ const renderCharacters = (characters) => {
             <div class="col-3">
                 <div class="card card-color" style="width: 18rem; height: 19rem;" data-id="${character.id}">
                 <div class="card-body">
-                    <h5 class="card-title"><b>${character.class.name}</b></h5>
+                    <h5 class="card-title"><b>${character.name }</b></h5>
                 </div>
                 <figure class="image rounded mx-auto d-block ">
                     <img src="${IMG_PREFIX}${character.image}" class="img-fluid" style ="height: 14rem; width: 16rem">
@@ -212,5 +259,5 @@ document.querySelector('#fairiesOption').addEventListener('click', renderFairies
 document.querySelector('#gladiatorsOption').addEventListener('click', renderGladiators);
 document.querySelector('#spectersOption').addEventListener('click', renderSpecters);
 document.querySelector('#allOption').addEventListener('click', renderAll);
-// document.querySelector('#AZOption').addEventListener('click', sortByNameAZ);
+
 
